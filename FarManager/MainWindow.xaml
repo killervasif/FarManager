@@ -1,0 +1,48 @@
+﻿<Window x:Class="FarManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FarManager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Content="Back" Command="{Binding ButtonCommand}" CommandParameter="{Binding ElementName=LeftSideTree}"/>
+            <TreeView Grid.Row="1" Name="LeftSideTree">
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Open" Command="{Binding OpenCommand}" CommandParameter="{Binding PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                        <MenuItem Header="Copy" Command="{Binding CopyCommand}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                        <MenuItem Header="Move" Command="{Binding MoveCommand}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+            </TreeView>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="14*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Back" Command="{Binding ButtonCommand}" CommandParameter="{Binding ElementName=RigtSideTree}"/>
+            <TreeView Name="RigtSideTree" Grid.Row="1">
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Open" Command="{Binding OpenCommand}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                        <MenuItem Header="Paste" Command="{Binding PasteCopyCommand}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                        <MenuItem Header="Move" Command="{Binding PasteMoveCommand}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+            </TreeView>
+        </Grid>
+    </Grid>
+</Window>
